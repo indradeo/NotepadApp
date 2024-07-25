@@ -24,11 +24,6 @@ public class NotepadController {
 	@Autowired
 	private NotepadService service;
 
-	@GetMapping("/")
-	public String welocme() {
-		return "make Use Of Postman to save and find notes ";
-	}
-
 	@PostMapping("/notes/save")
 	public ResponseEntity< ResponseStructure<Notepad>> saveNotepad(@RequestBody Notepad notepad) {
 		
