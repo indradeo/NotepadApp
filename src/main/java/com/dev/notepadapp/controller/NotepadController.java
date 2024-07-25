@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +24,12 @@ public class NotepadController {
 
 	@Autowired
 	private NotepadService service;
+	
+	
+	@GetMapping("/")
+	public String welcome() {
+		return "<h1>Welcome To Notepad App </h1> ";
+	}
 
 	@PostMapping("/notes/save")
 	public ResponseEntity< ResponseStructure<Notepad>> saveNotepad(@RequestBody Notepad notepad) {
@@ -42,6 +49,11 @@ public class NotepadController {
 
 	@GetMapping("notes/findById")
 	public ResponseEntity<ResponseStructure<Notepad>> findById(@RequestParam int id) {
+		return service.findById(id);
+	}
+	
+	@GetMapping("notes/findById/{id}")
+	public ResponseEntity<ResponseStructure<Notepad>> findByID(@PathVariable int id) {
 		return service.findById(id);
 	}
 	
